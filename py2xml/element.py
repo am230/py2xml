@@ -62,7 +62,7 @@ class Element(t.Generic[P], IElement):
         return str(value)
 
     def set_children(self, children: t.List[Value]) -> t.Self:
-        self.children = list(map(self.format, children))
+        self.children = [self.format(child) if not isinstance(child, Element) else child for child in children]
         return self
 
     def set_attributes(self, attributes: t.Dict) -> t.Self:
