@@ -54,7 +54,7 @@ class Element(t.Generic[P], IElement):
             self.attributes
         )
 
-    def format(self, value) -> str:
+    def format(self, value):
         if isinstance(value, str):
             return value
         if isinstance(value, bool):
@@ -62,7 +62,7 @@ class Element(t.Generic[P], IElement):
         return str(value)
 
     def set_children(self, children: t.List[Value]) -> t.Self:
-        self.children = list(children)
+        self.children = list(map(self.format, children))
         return self
 
     def set_attributes(self, attributes: t.Dict) -> t.Self:

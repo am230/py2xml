@@ -9,7 +9,7 @@ py_modules = [name]
 
 setup(
     name=name,
-    version="1.0.0",
+    version="1.0.1",
     keywords=("javascript", "convert", "translator"),
     description="Write XML with Pythonic Code",
     long_description=long_description,
