@@ -71,7 +71,10 @@ class Element(t.Generic[P], IElement):
 
     def __getitem__(self, args: t.Union[t.Tuple[Value], Value]) -> t.Self:
         self = self.copy()
-        self.set_children(list(args) if isinstance(args, tuple) else [args])
+        if isinstance(args, tuple):
+            self.set_children(list(args))
+        else:
+            self.set_children([args])
         return self
 
     def __call__(self, *args: P.args, **props: P.kwargs) -> t.Self:

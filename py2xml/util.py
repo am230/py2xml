@@ -1,7 +1,7 @@
 import typing as t
 from xml.etree import ElementTree
 from .element import Element
-from strbuilder import BaseBuilder, SurroundBuilder
+from strbuilder import Builder, SurroundBuilder
 import keyword
 
 
@@ -40,7 +40,7 @@ def _generate_code(tree: ElementTree.Element, elements=None) -> str:
         else:
             elements[tag] = tag
     return (
-        BaseBuilder(elements[tree.tag], separator='')
+        Builder(elements[tree.tag], separator='')
         .write_if(tree.attrib, lambda: f"({', '.join(f'{key}={_format_value(value)}' for key, value in tree.attrib.items())})")
         .write_if(tree.text or is_tree_not_empty(tree),
                   lambda: SurroundBuilder(surround=['[\n', '\n]'], separator=',\n')
